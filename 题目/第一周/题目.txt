@@ -1,7 +1,0 @@
-Linklist三道题如下：
-1、
-https://oj.leetcode.com/problems/merge-two-sorted-lists/
-2、
-https://oj.leetcode.com/problems/remove-nth-node-from-end-of-list/
-3、
-https://oj.leetcode.com/problems/remove-duplicates-from-sorted-list-ii/
