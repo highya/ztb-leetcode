@@ -9,9 +9,9 @@ class Solution:
 				nHead.next, lt = lt, lt.next
 			elif lt.val < rt.val:
 				nHead.next, lt = lt, lt.next
-			else
-			nHead.next, rt = rt, rt.next
-			nHead = nHead.next
+			else:
+				nHead.next, rt = rt, rt.next
+				nHead = nHead.next
 		return backHead.next
 
 
