@@ -6,8 +6,7 @@ class Solution:
 		p1.next = head
 		Head = p1
 		while m > 0:
-			p2 = p2.next
-			m -= 1
+			p2,m = p2.next,m-1
 		while p2.next:
 			p1,p2=p1.next,p2.next
 		p1.next = p1.next.next
