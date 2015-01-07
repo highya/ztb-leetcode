@@ -1,3 +1,4 @@
+#写的丑，求牛逼解法...
 class Solution:
     def trap(self, A):
         if len(A)==0:
