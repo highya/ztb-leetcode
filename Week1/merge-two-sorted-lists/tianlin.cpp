@@ -9,31 +9,34 @@
 class Solution {
 public:
     ListNode *mergeTwoLists(ListNode *l1, ListNode *l2) {
+        if(l1==NULL && l2==NULL)
+            return NULL;
         if(l1==NULL)
             return l2;
         if(l2==NULL)
             return l1;
-        ListNode *newhead = new ListNode(0); 
-        ListNode *cursor = newhead;
-        while(l1!=NULL && l2!=NULL)
+        ListNode *p1 = l1;
+        ListNode *p2 = l2;
+        ListNode *result_head = new ListNode(0);
+        ListNode *cursor = result_head;
+        while(p1!=NULL && p2!=NULL)
         {
-            if(l1->val <= l2->val)
+            if(p1->val <= p2->val)
             {
-                cursor->next = new ListNode(l1->val);
-                l1 = l1->next;
+                cursor->next = p1;
+                p1 = p1->next;
             }
             else
             {
-                cursor->next = new ListNode(l2->val);
-                l2 = l2->next;
+                cursor->next = p2;
+                p2 = p2->next;
             }
             cursor = cursor->next;
         }
-        if(l1!=NULL)
-            cursor->next = l1;
-        else if(l2!=NULL)
-            cursor->next = l2;
-        return newhead->next;
-            
+        if(p1==NULL && p2!=NULL)
+            cursor->next = p2;
+        else if(p2==NULL && p1!=NULL)
+            cursor->next = p1;
+        return result_head->next;
     }
 };
