@@ -46,6 +46,6 @@ public:
                 temp=temp->next;
             }
         }
-       return head2->next;
+        return head2->next;
     }
 };
