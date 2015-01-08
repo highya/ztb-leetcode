@@ -16,45 +16,32 @@ public:
             return l1;
         }
         ListNode *l3, *ret;
-        if (l1 != NULL && l2 != NULL){
-            if (cmp(l1, l2)){
-                l3 = l1;
-                next(l1);
+        if (l1->val < l2->val){
+            l3 = l1;
+            l1 = l1->next;
+        }else{
+            l3 = l2;
+            l2 = l2->next;
+        }
+        ret = l3;
+        while (l1 != NULL && l2 != NULL){
+            if (l1->val < l2->val){
+                l3->next = l1;
+                l3 = l3->next;
+                l1 = l1->next;
             }else{
-                l3 = l2;
-                next(l2);
-            }
-            ret = l3;
-            
-            while (l1 != NULL && l2 != NULL){
-                if (cmp(l1, l2)){
-                    l3->next = l1;
-                    next(l1);
-                    next(l3);
-                }else{
-                    l3->next = l2;
-                    next(l2);
-                    next(l3);
-                }
+                l3->next = l2;
+                l3 = l3->next;
+                l2 = l2->next;
             }
         }
         
         if (l1 != NULL){
             l3->next = l1;
-        }else if (l2 != NULL){
-            l3->next = l2;
         }else{
-            ret = NULL;
+            l3->next = l2;
         }
         
         return ret;
-    }
-    
-    bool cmp(ListNode *l1, ListNode *l2){
-        return l1->val < l2->val;
-    }
-    
-    void next(ListNode * &l1){
-        l1 = l1->next;
     }
 };
