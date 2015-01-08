@@ -29,7 +29,7 @@ public:
             p2 = p3->next;
             p1->next = p2;
             p3->next =NULL;
-            del(to_del);//这一步不删结果也正确，还大大地省时间了，不过还是觉得删的好，垃圾要回收嘛
+            del(to_del);
         }
         
         return tmp_head.next;

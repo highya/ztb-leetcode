@@ -8,27 +8,58 @@
  */
 class Solution {
 public:
-    ListNode *removeNthFromEnd(ListNode *head, int n) {
-        ListNode *p = head;
-        int count = 0;
-        while (p != NULL){
-            count++;
-            p = p->next;
+    ListNode *deleteDuplicates(ListNode *head) {
+        ListNode *p = head, *q, *to_del;
+        int val;
+        
+        if (head == NULL || head->next == NULL){
+            return head;
         }
-        int i = count - n;
-        ListNode *to_del;
-        if (i == 0){
+        if (head->val == head->next->val){
+            val = head->val;
             to_del = head;
-            head = head->next;
-        }else{
-            p = head;
-            while (--i > 0){
-                p = p->next;
+            while (head->next != NULL && head->next->val == val){
+                head = head->next;
             }
-            to_del = p->next;
-            p->next = to_del->next;
+            q = head;
+            head = head->next;
+            q->next = NULL;
+            while (to_del != NULL){
+                q = to_del;
+                to_del = to_del->next;
+                delete q;
+            }
+            return deleteDuplicates(head);
         }
-        delete to_del;
+        
+        ListNode *p1 = head;
+        ListNode *p2 = head->next;
+        ListNode *p3 = head->next->next;
+        
+        while (p2 != NULL && p3 != NULL){
+            if (p2->val != p3->val){
+                p1 = p2;
+                p2 = p3;
+                p3 = p3->next;
+                continue;
+            }
+            to_del = p2;
+            val = p2->val;
+            while (p3->next != NULL && p3->next->val == val){
+                p3 = p3->next;
+            }
+            q = p3;
+            p3 = p3->next;
+            q->next = NULL;
+            while (to_del != NULL){
+                q = to_del;
+                to_del = to_del->next;
+                delete q;
+            }
+            p1->next = p2 = p3;
+            p3 = p2 == NULL ? NULL : p2->next;
+        }
+        
         return head;
     }
 };
