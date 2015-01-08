@@ -13,17 +13,7 @@ public:
             return l2;
         if(l2==NULL)
             return l1;
-            
-        //让res指向首元素较小的链表，并把原来链表的表头向后移一位。    
-        ListNode *res;
-        if(l1->val<l2->val){
-            res=l1;
-            l1=l1->next;
-        }
-        else{
-            res=l2;
-            l2=l2->next;
-        }
+        ListNode *res=new ListNode(0);
         
         //pre指向当前的元素，并将pre->next指向l1和l2中较小的元素
         ListNode *pre=res;
@@ -46,6 +36,6 @@ public:
         else
             pre->next=l1;
         
-        return res;
+        return res->next;
     }
 };
