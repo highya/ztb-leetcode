@@ -11,7 +11,7 @@ class Solution:
 				nHead.next, lt = lt, lt.next
 			else:
 				nHead.next, rt = rt, rt.next
-				nHead = nHead.next
+			nHead = nHead.next
 		return backHead.next
 
 
