@@ -1,0 +1,156 @@
+class Solution {
+public:
+    int trap(int A[], int n) {
+        
+        
+           
+         if(n<=0)
+        return 0;
+        int start,end,from,to;
+        int sum=0,findarea=1,i;
+        for(i=0;i<n;i++)
+        {
+            if(A[i]>0)
+           { 
+			   start=i;
+			   break;
+			}
+            
+            
+            
+        }
+		if(i>=n)
+			return 0;
+
+			for(i=n-1;i>=0;i--)
+        {
+            if(A[i]>0)
+			{
+            end=i;
+			break;
+			}
+        }
+
+			if(i<=0)
+			return 0;
+        from=start;
+        to=end;
+		if(end<=start)
+			return 0;
+
+		
+        while(1)
+        {
+             while(findarea)
+             {
+               for(i=from+1;i<=end;i++)
+               {
+                  if(A[i]>=A[from])
+                  {
+                    to=i;
+                    findarea=0;
+                    break;
+                   }
+                
+                
+            
+                }
+                if (findarea==0)
+                break;
+
+				int max,index;
+				if((from+2)<=end)
+				{
+					max=A[from+2];
+				    index=from+2;
+				}
+				else
+				{
+				return sum;
+				
+				
+				}
+				for(i=from+2;i<=end;i++)
+				{
+					if(A[i]>max)
+						{
+							index=i;
+				
+					        max=A[i];
+					    }
+
+				}
+				
+			
+				
+					if(max>A[from+1])
+					{
+						to=index;
+						findarea=0;
+						break;
+					}
+				
+
+
+
+
+
+				if (findarea==0)
+                break;
+				from++;
+
+               /* if(A[from+1]>0)
+                {
+                  from++;
+                           
+                }
+                else
+                {
+                   while(1)
+                     {
+                        
+                            to=from+i+1;
+                            i++;
+                            
+                         
+                          if(A[from+i]>0)
+                        break;
+              
+                      }
+                      findarea=0;
+                  
+                }*/
+              if(from>=end)
+              break;
+              
+              
+            }
+            if(from>=end)
+            break;
+        
+            for(i=from+1;i<to;i++)
+               
+            {
+                
+                if(A[from]<=A[to])
+                sum=sum+(A[from]-A[i]);
+                else
+                sum=sum+(A[to]-A[i]);
+                
+                
+            }
+            from=to;
+			
+
+            if(from>=end)
+            break;
+			findarea=1;
+            
+            
+        }
+        
+        return sum;
+        
+    }
+        
+    };
