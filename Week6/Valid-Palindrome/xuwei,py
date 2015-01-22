@@ -1,0 +1,18 @@
+class Solution:
+    # @param s, a string
+    # @return a boolean
+    def isPalindrome(self, s):
+        if s == "":
+            return True
+        s=s.strip().lower()
+        l,r =0,len(s)-1
+        while l <= r:
+            if s[l].isalpha() == False and s[l].isdigit() == False and l < r:
+                l += 1
+            elif s[r].isalpha() == False and s[r].isdigit() == False and l < r:
+                r -= 1
+            elif s[l] == s[r]:
+                l,r = l+1,r-1
+            else:
+                return False
+        return True
