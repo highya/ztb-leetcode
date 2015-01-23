@@ -9,7 +9,8 @@
 class Solution {
 public
     ListNode reverseBetween(ListNode head, int m, int n) {
-        ListNode  hh=(ListNode )malloc(sizeof(ListNode));
+        ListNode  hh=(ListNode )malloc(sizeof(ListNode));//add the auliliary headnode to simblify the code.
+        //ListNode hh=new ListNode(0); //is also OK 
         ListNode  h, t, p, q;
         hh-next=head;
         p=hh;
