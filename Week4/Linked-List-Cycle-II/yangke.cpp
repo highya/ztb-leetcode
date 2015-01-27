@@ -11,7 +11,6 @@ public:
     ListNode *detectCycle(ListNode *head) {
         ListNode *p;
         ListNode *q;
-        ListNode *tag;
         p=q=head;
         bool has_circle=false;
         while(p&&q&&q->next)
