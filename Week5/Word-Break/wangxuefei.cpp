@@ -1,19 +1,17 @@
 class Solution {
 public:
     bool wordBreak(string s, unordered_set<string> &dict) {
-        vector<bool> v(s.length()+1,false);
-        v[0]=true;
-        for(int i=1;i<=s.length();i++)
-        {
-            for(int j=i-1;j>=0;j--)
-            {
-                if(v[j] && dict.find(s.substr(j,i-j))!=dict.end())
-                {
-                    v[i]=true;
-                    break;
+        int n = s.size();
+        vector<bool> v(n + 1, false);
+        v[0] = true;
+        for (int i = 0; i < n; i++) {
+            if (v[i]) {
+                for (int len = 1; len < n + 1 - i; len++) {
+                    if (dict.count(s.substr(i, len)) > 0)
+                        v[i + len] = true;
                 }
             }
         }
-        return v[s.length()];
+        return v[n];
     }
 };
