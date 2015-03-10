@@ -1,0 +1,28 @@
+bool isPalindrome(string s)
+    {
+        bool isAlphanumeric(char ch);
+        if (s.empty()) return true;
+        int len = s.length();
+        if (len ==1) return true;
+        int i =0 ,j = len-1;
+        int delta = 'a' - 'A';
+        while (i<=j)
+        {
+            while (!isAlphanumeric(s[i])&&i<j) i++;
+            while (!isAlphanumeric(s[j])&&j>i) j--;
+            if (s[i] == s[j] || s[i]-s[j]== delta || s[j]-s[i]==delta)
+            {
+                i++;
+                j--;
+            }
+            else return false;
+        }
+        return true;
+    }
+    bool isAlphanumeric(char ch)
+    {
+        if (ch>='a' && ch<='z') return true;
+        if (ch>='A' && ch<='Z') return true;
+        if (ch>='0' && ch<='9') return true;
+        else return false;
+    }
