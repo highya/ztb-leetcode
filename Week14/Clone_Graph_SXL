@@ -1,0 +1,66 @@
+/**
+ * Definition for undirected graph.
+ * struct UndirectedGraphNode {
+ *     int label;
+ *     vector<UndirectedGraphNode *> neighbors;
+ *     UndirectedGraphNode(int x) : label(x) {};
+ * };
+ */
+class Solution {
+public:
+/*
+    UndirectedGraphNode *cloneGraph(UndirectedGraphNode *node) {
+        if (node == NULL) return NULL;
+        
+        map<UndirectedGraphNode *, UndirectedGraphNode *> mymap;
+        queue<UndirectedGraphNode *> q;
+        
+        q.push(node);
+        //UndirectedGraphNode *head = new UndirectedGraphNode(node->label);
+        while(!q.empty()){
+            UndirectedGraphNode * temp = q.front();
+            q.pop();
+            
+            if (mymap.find(temp) == mymap.end()){
+                UndirectedGraphNode * newNode = new UndirectedGraphNode(temp->label);
+                mymap.insert(pair<UndirectedGraphNode *, UndirectedGraphNode *>(temp, newNode));
+                newNode->neighbors = vector<UndirectedGraphNode *>(temp->neighbors.size(),NULL);
+                for(int i=0;i<temp->neighbors.size();i++){
+                    if(mymap.find(temp->neighbors[i]) != mymap.end()){
+                        newNode->neighbors[i] = mymap[temp->neighbors[i]];
+                        //q.push(temp->neighbors[i]);
+                    }
+                    else {
+                        newNode->neighbors[i] = NULL;
+                        q.push(temp->neighbors[i]);
+                    }
+                }
+                
+                
+            }else continue;
+        }
+        
+        for(map<UndirectedGraphNode *, UndirectedGraphNode *>::iterator it=mymap.begin();it!=mymap.end();it++){
+            
+            for(int j=0;j < it->second->neighbors.size();j++){
+                if(!(it->second->neighbors[j])){
+                    it->second->neighbors[j] = mymap[it->first->neighbors[j]];
+                }
+            }
+        }
+        return mymap[node];
+    }*/
+    
+    unordered_map<UndirectedGraphNode*, UndirectedGraphNode*> hash;
+    UndirectedGraphNode *cloneGraph(UndirectedGraphNode *node) {
+       if (!node) return node;
+       if(hash.find(node) == hash.end()) {
+           hash[node] = new UndirectedGraphNode(node -> label);
+           for (auto x : node -> neighbors) {
+                (hash[node] -> neighbors).push_back( cloneGraph(x) );
+           }
+       }
+       return hash[node];
+    }
+    
+};
